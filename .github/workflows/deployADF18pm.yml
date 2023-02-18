@@ -1,0 +1,35 @@
+# This is a basic workflow to help you deploy an ADF ARM template to a higher environment
+
+# For more information on GitHub Actions for Azure: https://github.com/Azure/Actions
+# For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: 'This deploys to Production'
+    steps:
+    - uses: actions/checkout@main
+
+    - name: Azure Login
+      uses: "azure/actions/login@v1"
+      with:         
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+        environment: 'AzureStack'
+        
+    - name: Deploy Azure Resource Manager (ARM) Template
+      uses: Azure/arm-deploy@v1      
+      with:
+        # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
+        scope: 'resourcegroup'
+        # Target resource group of the deployment.        
+        resourceGroupName: 'example-resource-group'
+        # Specify the path to the ADF ARM template. In this scenario, the workflow is in the same branch, 
+        # hence we only add the folder and arm template name to the path
+        template: ./datafact-98196a/ARMTemplateForFactory.json
+        parameters: ./datafact-98196a/ARMTemplateParametersForFactory.json factoryName=datafact-98196b
+        # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
+        deploymentMode: Incremental        
+        
