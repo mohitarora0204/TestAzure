@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
    branches:
-      -adf_publish
+      - adf_publish
 
 jobs:
   build:
