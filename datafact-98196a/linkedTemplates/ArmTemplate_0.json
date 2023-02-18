@@ -241,7 +241,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Get Metadata1",
+						"name": "Get Metadatatest",
 						"type": "GetMetadata",
 						"dependsOn": [],
 						"policy": {
@@ -260,7 +260,8 @@
 							},
 							"fieldList": [
 								"itemType",
-								"childItems"
+								"childItems",
+								"itemType"
 							],
 							"storeSettings": {
 								"type": "AzureBlobStorageReadSettings",
