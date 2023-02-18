@@ -28,8 +28,8 @@ jobs:
         resourceGroupName: 'example-resource-group'
         # Specify the path to the ADF ARM template. In this scenario, the workflow is in the same branch, 
         # hence we only add the folder and arm template name to the path
-        template: ./adf-publish/datafact-98196a/ARMTemplateForFactory.json
-        parameters: ./adf-publish/datafact-98196a/ARMTemplateParametersForFactory.json factoryName=datafact-98196b
+        template: ./adf_publish/datafact-98196a/ARMTemplateForFactory.json
+        parameters: ./adf_publish/datafact-98196a/ARMTemplateParametersForFactory.json factoryName=datafact-98196b
         # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
         deploymentMode: Incremental        
         
