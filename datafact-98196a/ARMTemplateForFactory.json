@@ -48,7 +48,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Get Meltadatatest99",
+						"name": "Get Meltadatatdest99",
 						"type": "GetMetadata",
 						"dependsOn": [],
 						"policy": {
