@@ -15,9 +15,11 @@ jobs:
 
     - name: Azure Login
       uses: "azure/actions/login@v1"
-      with:
-         creds: ${{secrets.AZURE_CREDENTIALS}}
-         environment: 'AzureStack'
+      with:         
+         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+         enable-AzPSSession: true
         
     - name: Deploy Azure Resource Manager (ARM) Template
       uses: Azure/arm-deploy@v1      
@@ -28,12 +30,8 @@ jobs:
         resourceGroupName: 'example-resource-group'
         # Specify the path to the ADF ARM template. In this scenario, the workflow is in the same branch, 
         # hence we only add the folder and arm template name to the path
-        template: ./ARMTemplateForFactory1.json
-        parameters: ./ARMTemplateParametersForFactory1.json factoryName=datafact-98196b 
+        template: ./adf-publish/datafact-98196a/ARMTemplateForFactory.json
+        parameters: ./adf-publish/datafact-98196a/ARMTemplateParametersForFactory.json factoryName=datafact-98196b
         # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
         deploymentMode: Incremental        
-        # Supply deployment parameter values. In this simple scenario, 
-        # Target ADF to which this is being deployed
-        #parameters: factoryName=datafact-98196b
-        #overrideParameters: |
-        #  factoryName=datafact-98196b  
+        
